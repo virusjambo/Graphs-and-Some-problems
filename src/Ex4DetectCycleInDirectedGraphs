@@ -1,0 +1,86 @@
+package UnionFindAlgorithm;
+
+
+import java.util.*;
+
+public class Graph<E> {
+
+    Map<E, List<E>> graph = new HashMap<E, List<E>>();
+    List<E> visited = new ArrayList<E>();
+    List<E> loop=new ArrayList<E>();
+
+    void addEdge(E from, E to) {
+        List<E> temp = new ArrayList<E>();
+        if (!graph.containsKey(from)) {
+
+
+            temp.add(to);
+
+            graph.put(from, temp);
+        } else {
+            List<E> temp1 = graph.get(from);
+            temp1.add(to);
+        }
+
+
+    }
+
+
+
+   boolean  DFS(E from){
+     if(!visited.contains(from)) {
+       visited.add(from);
+         loop.add(from);
+       System.out.println(from);
+       if (graph.containsKey(from)) {
+           ListIterator<E> iterator;
+           iterator =  graph.get(from).listIterator();
+           while (iterator.hasNext()) {
+               E temp = iterator.next();
+               if (!visited.contains(temp) && DFS(temp)) {
+                    return true;
+               }else if(loop.contains(temp)){
+                   System.out.println("Loop from "+ from + " to " + temp +" exists!");
+                   return true;
+               }
+           }
+       }
+
+       }
+       loop.remove(from);
+       return false;
+   }
+
+ void DFSUtil(){
+
+     Set<E> set=graph.keySet();
+    Iterator<E> iterator= set.iterator() ;
+     while(iterator.hasNext()){
+        if(DFS(iterator.next()) ) {
+            System.out.print("Yessssssssssssssssssssss");
+            break;
+        }
+     }
+
+
+    }
+   public static void main (String arg[]){
+       Graph<Integer> g=new Graph<Integer>();
+       /*g.addEdge(1, 4);
+       g.addEdge(4, 3);
+       g.addEdge(3, 2);
+       g.addEdge(2, 6);*/
+       g.addEdge(0, 1);
+       g.addEdge(0, 2);
+       g.addEdge(2, 3);
+       g.addEdge(3, 4);
+       g.addEdge(4, 5);
+       g.addEdge(5, 6);
+       g.addEdge(1,1);
+       g.addEdge(3,3);
+      // System.out.println( g.DFS(1));
+      g.DFSUtil();
+
+   }
+
+}
