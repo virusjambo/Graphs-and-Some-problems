@@ -41,7 +41,7 @@ Adjacency Matrix is also used to represent weighted graphs.
 If adj[i][j] = w, then there is an edge from vertex i to vertex j with weight w.
 
 Pros: Representation is easier to implement and follow. Removing an edge takes O(1) time. 
-Queries like whether there is an edge from vertex ‘u’ to vertex ‘v’ are efficient and can be done O(1).
+Queries like whether there is an edge from vertex ï¿½uï¿½ to vertex ï¿½vï¿½ are efficient and can be done O(1).
 
 Cons: Consumes more space O(V^2). 
 Even if the graph is sparse(contains less number of edges), 
@@ -109,7 +109,7 @@ for(int i=0;i<nodeArr.length;i++){
 
 	//You can try to store vertexes in to List or in this way Map<E,List<E>>
 	public static void main(String[] args) {
-     Graph<Integer> graph=new Graph<>();
+     Graph<Integer> graph=new Graph<Integer>();
      graph.createGraph(5);
     
      graph.addEdge( 0, 1);

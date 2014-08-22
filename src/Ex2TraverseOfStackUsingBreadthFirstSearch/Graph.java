@@ -12,7 +12,7 @@ public class Graph<E> {
 	// from queue and print it.
 	// Here we are using HashMap To store nodes.Where each vertex becomes a Key
 	// and adjacent vertexes are stored in List.
-	HashMap<E, ArrayList<E>> graph = new HashMap<>();
+	HashMap<E, ArrayList<E>> graph = new HashMap<E, ArrayList<E>>();
 
 	void addEdge(E value, E value1) {
 		ArrayList<E> list;
