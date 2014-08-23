@@ -28,6 +28,7 @@ public class Graph<E> {
         Node<E> endNode = new Node<E>(end);
 
         if (graph.containsKey(start)) {
+
             graph.get(start).add(endNode);
         } else {
             ArrayList<Node<E>> temp = new ArrayList<Node<E>>();
