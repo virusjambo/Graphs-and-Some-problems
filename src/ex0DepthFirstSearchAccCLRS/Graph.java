@@ -2,9 +2,7 @@ package ex0DepthFirstSearchAccCLRS;
 
 import java.util.*;
 
-/**
- * Created by user on 23-08-2014.
- */
+
 public class Graph<E> {
 
     //Map to store vertices so we can use same vertices for our graph
