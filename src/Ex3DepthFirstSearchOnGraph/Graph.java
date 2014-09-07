@@ -1,13 +1,11 @@
 package Ex3DepthFirstSearchOnGraph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 /*Depth First Traversal (or Search) for a graph is similar to Depth First Traversal of a tree. The only catch here is, unlike trees, 
  graphs may contain cycles, so we may come to the same node again. To avoid processing a node more than once, we use a boolean visited array. 
  For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it.
- 2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process. 
+ 2 is also an adjacent vertex of 0. If we donï¿½t mark visited vertices, then 2 will be processed again and it will become a non-terminating process. 
  Depth First Traversal of the following graph is 2, 0, 1, 3*/
 //http://d2o58evtke57tz.cloudfront.net/wp-content/uploads/DFS.jpg
 //you can see image at above link
@@ -35,7 +33,7 @@ import java.util.Iterator;
 
  5) To test if a graph is bipartite
  We can augment either BFS or DFS when we first discover a new vertex, color it opposited its parents, 
- and for each other edge, check it doesn’t link two vertices of the same color. 
+ and for each other edge, check it doesnï¿½t link two vertices of the same color. 
  The first vertex in any connected component can be red or black!
 
 
@@ -53,7 +51,7 @@ import java.util.Iterator;
  */
 public class Graph<E> {
 	HashMap<E, ArrayList<E>> graph = new HashMap<>();
-	ArrayList<E> forest = new ArrayList<>();
+	List<E> forest = new ArrayList<>();
 
 	void addEdge(E value, E value1) {
 		ArrayList<E> list;
@@ -79,27 +77,53 @@ public class Graph<E> {
 			ArrayList<E> list = graph.get(value);
 			Iterator<E> iterator = list.iterator();
 			while (iterator.hasNext()) {
-				value = iterator.next();
-				if (!forest.contains(value)) {
+			E	temp = iterator.next();
+				if (!forest.contains(temp)) {
 					// Recurse adjacent nodes
-					DFS(value);
+					DFS(temp);
 
 				}
 
 			}
+            stack.push(value);
 		}
 
 	}
 
-	public static void main(String[] args) {
-		Graph<Integer> g = new Graph<Integer>();
-		g.addEdge(0, 1);
-		g.addEdge(0, 2);
-		g.addEdge(1, 2);
-		g.addEdge(2, 0);
-		g.addEdge(2, 3);
-		g.addEdge(3, 3);
-		g.DFS(2);
+    void DFSUtil(){
+        Iterator<E> it=graph.keySet().iterator();
+        while(it.hasNext()){
+            E temp=it.next();
+            if(!forest.contains(temp)){
+                DFS(temp);
+            }
+
+
+        }
+
+    }
+
+    Stack<E> stack=new Stack<>();
+    void printStack() {
+        System.out.println("stack:");
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+		Graph<Integer> gp = new Graph<Integer>();
+        gp.addEdge(1, 2);
+        gp.addEdge(4, 1);
+        gp.addEdge(2, 3);
+        gp.addEdge(3, 1);
+        gp.addEdge(4, 3);
+
+        gp.DFSUtil();
+
+		gp.printStack();
 	}
 
 }

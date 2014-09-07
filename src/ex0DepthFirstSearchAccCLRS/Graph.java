@@ -116,23 +116,32 @@ public class Graph<E> {
 
         time=time+1;
         parent.time=time;
-
+       stack.push(key);
 
 
     }
 
+    Stack<E> stack=new Stack<>();
+    void printStack() {
+        System.out.println("stack:");
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+
+        }
+
+    }
 
 
 
     public static void main(String arg[]) {
 
         Graph<Integer> gp = new Graph<Integer>();
-        gp.createGraph(0, 1);
-        gp.createGraph(0, 2);
+
         gp.createGraph(1, 2);
-        gp.createGraph(2, 0);
+        gp.createGraph(4, 1);
         gp.createGraph(2, 3);
-        gp.createGraph(3, 3);
+        gp.createGraph(3, 1);
+        gp.createGraph(4, 3);
        /* gp.createGraph(0, 1);
         gp.createGraph(0, 2);
         gp.createGraph(0, 3);
@@ -143,6 +152,7 @@ public class Graph<E> {
        gp.DFS();
        // gp. DFSUtil(2);
         gp.printGraph();
+        gp.printStack();
     }
 
 
